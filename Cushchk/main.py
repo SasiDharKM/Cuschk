@@ -1,5 +1,5 @@
 def read_file():	
-	quotes= open("root/media/sasidhar/DATA/GitHub/Cuschk/Test/Test1")
+	quotes= open("/media/sasidhar/DATA/GitHub/Cuschk/Cushchk/Test1.txt")
 	contents = quotes.read()
 	print(contents)
 	quotes.close()
