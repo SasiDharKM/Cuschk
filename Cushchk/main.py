@@ -9,7 +9,7 @@ def read_file():
 def cuschk(text):
 	con = urllib.request.urlopen("http://www.wdylike.appspot.com/?q="+text.replace(' ','+'))#replacing <spc> with + to prevent bad requests
 	byte_output = con.read()
-	output = bytes_output.decode("utf-8")
+	output = bytes_output.decode("utf-8")#decoding the byte object to a string
 	#print(output)
 	con.close()
 	if 'true' in output:
