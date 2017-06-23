@@ -1,7 +1,17 @@
-def read_file():	
-	quotes= open("/media/sasidhar/DATA/GitHub/Cuschk/Test/Test1")
-	contents = quotes.read()
+import urllib.request
+
+def read_file():
+	text = open("../Test/Test1")
+	contents = text.read()
 	print(contents)
-	quotes.close()
+	text.close()
+	cuschk(contents)
+
+def cuschk(text):
+	con = urllib.request.urlopen("http://www.wdylike.appspot.com/?q=Hi I am shit.Just kidding Muaahaa.")
+	output = con.read()
+	print(output)
+	con.close()
+
 
 read_file()
