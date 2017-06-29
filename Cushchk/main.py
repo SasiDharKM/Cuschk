@@ -1,8 +1,8 @@
 import urllib.request
 import argparse as ap
 
-def read_file():
-	text = open("../Test/Test1")#defining a path
+def read_file(input_text):
+	text = open(input_text)#defining a path
 	contents = text.read()
 	text.close()
 	cuschk(contents)
@@ -11,7 +11,6 @@ def args():
 	parser = ap.ArgumentParser(description = 'Take in text to detect curse words', prog = 'cuschk')
 	parser.add_argument('-p', '--path', nargs = '?', type = string, const = "../Test/Test1", default="../Test/Test1", 
 		help = 'Enter the path to the file to be tested' )
-	parser.add_argument('-t', '--text', type = string, default= "Hi", help = 'Enter the raw text to be checked')
 	args = parser.parse_args()
 	return args.path
 
@@ -24,6 +23,11 @@ def cuschk(text):
 	output = bytes_output.decode("utf-8")#decoding the byte object to a string
 	#print(output)
 	con.close()
+	return output
+
+def main():
+	input_text = args() #get the path from the user
+	output = read_file(input_text)
 	if 'true' in output:
 		print("Are you sure you want to use PROFANE Words...?")
 	elif 'false' in output:
@@ -31,4 +35,3 @@ def cuschk(text):
 	else:
 		print("Scan of document is improper")
 
-read_file()
