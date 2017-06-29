@@ -1,4 +1,5 @@
 import urllib.request
+import argparse as ap
 
 def read_file():
 	text = open("../Test/Test1")#defining a path
@@ -6,8 +7,19 @@ def read_file():
 	text.close()
 	cuschk(contents)
 
+def args():
+	parser = ap.ArgumentParser(description = 'Take in text to detect curse words', prog = 'cuschk')
+	parser.add_argument('-p', '--path', nargs = '?', type = string, const = "../Test/Test1", default="../Test/Test1", 
+		help = 'Enter the path to the file to be tested' )
+	parser.add_argument('-t', '--text', type = string, default= "Hi", help = 'Enter the raw text to be checked')
+	args = parser.parse_args()
+	return args.path
+
+
 def cuschk(text):
-	con = urllib.request.urlopen("http://www.wdylike.appspot.com/?q="+text.replace(' ','+'))#replacing <spc> with + to prevent bad requests
+	
+	#replacing <space> with + to prevent bad requests
+	con = urllib.request.urlopen("http://www.wdylike.appspot.com/?q="+text.replace(' ','+'))
 	byte_output = con.read()
 	output = bytes_output.decode("utf-8")#decoding the byte object to a string
 	#print(output)
